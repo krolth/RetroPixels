@@ -24,7 +24,7 @@ namespace WallAll
     {
         ContentManager content;
         Song songBackground;
-        bool isMusicTemporarilyOff = true; //TODO: REENABLE
+        bool isMusicTemporarilyOff = false;
 
         #region Initialization
         
@@ -67,6 +67,11 @@ namespace WallAll
                     isMusicTemporarilyOff = true;
                 }
             }
+
+            foreach (var entry in MenuEntries)
+            {
+                entry.Init(ScreenManager.FontNormal);
+            }
         }
 
         #endregion
@@ -80,7 +85,7 @@ namespace WallAll
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new WallAllScreen());
+                               new LaserGrazeScreen());
         }
 
 

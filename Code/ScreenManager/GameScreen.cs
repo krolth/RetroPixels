@@ -39,7 +39,6 @@ namespace WallAll
 
         #region Properties
 
-
         /// <summary>
         /// Normally when one screen is brought up over the top of another,
         /// the first screen will transition off to make room for the new
@@ -230,7 +229,8 @@ namespace WallAll
         /// <summary>
         /// Load graphics content for the screen.
         /// </summary>
-        public virtual void LoadContent(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice) { }
+        public virtual void LoadContent(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice) 
+        { }
 
         /// <summary>
         /// Unload content for the screen.

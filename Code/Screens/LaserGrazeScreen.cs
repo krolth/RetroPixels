@@ -1,4 +1,4 @@
-#region File Description
+﻿#region File Description
 //-----------------------------------------------------------------------------
 // GameplayScreen.cs
 //
@@ -28,7 +28,7 @@ namespace WallAll
     /// placeholder to get the idea across: you'll probably want to
     /// put some more interesting gameplay in here!
     /// </summary>
-    class WallAllScreen : GameScreen
+    class LaserGrazeScreen : GameScreen
     {
         #region Fields
 
@@ -68,7 +68,7 @@ namespace WallAll
         const int ScreenHeight = 800;
         const int WallHeight = 15;
         const int PlayerSize = 11;
-        const int PlayerSizeHalf = PlayerSize/2;
+        const int PlayerSizeHalf = PlayerSize / 2;
         const int GameOverDuration = 150;
         const int BlockGameStartDuration = 30;
 
@@ -82,18 +82,18 @@ namespace WallAll
         #endregion
 
         #region Initialization
-        
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public WallAllScreen()
+        public LaserGrazeScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             EnabledGestures = GestureType.Tap | GestureType.FreeDrag;
         }
-        
+
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
@@ -125,7 +125,7 @@ namespace WallAll
             // it should not try to catch up.
             ScreenManager.Game.ResetElapsedTime();
 
-            strHighScore = ScreenManager.HighscoreWallAll.ToString();
+            strHighScore = ScreenManager.HighscoreLaserGraze.ToString();
         }
 
         private void SetTextPositions()
@@ -134,8 +134,8 @@ namespace WallAll
             int widthCopyright = GetFontWidth(copyrightFont, msgCopyRight);
             int widthPressStart = GetFontWidth(instructionsFont, msgPressStart);
             int widthGameOver = GetFontWidth(gameOverFont, msgGameOver);
-            
-            titlePos = new Vector2(ScreenWidth / 2 - widthTitle/2, ScreenHeight/2 - 100);
+
+            titlePos = new Vector2(ScreenWidth / 2 - widthTitle / 2, ScreenHeight / 2 - 100);
             pressStartPos = new Vector2(ScreenWidth / 2 - 120, ScreenHeight - 300);
             copyRightPos = new Vector2(ScreenWidth / 2 - 150, ScreenHeight - 40);
 
@@ -169,7 +169,7 @@ namespace WallAll
                                                        bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-            
+
             // Add new walls
             if (wallTicks-- <= 0) AddWall();
 
@@ -240,6 +240,7 @@ namespace WallAll
                         
             var mouseState = Mouse.GetState();
             //If finger touched screen for the first time
+            //if (touchState[i].State == TouchLocationState.Pressed)
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 isMouseClicked = true;
@@ -287,7 +288,7 @@ namespace WallAll
         {
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            
+
             ScreenManager.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
@@ -328,7 +329,7 @@ namespace WallAll
             }
 
             spriteBatch.End();
-            
+
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0)
                 ScreenManager.FadeBackBufferToBlack(1f - TransitionAlpha);
@@ -355,12 +356,12 @@ namespace WallAll
 
             gameState = GameState.GameOver;
 
-            if (score > ScreenManager.HighscoreWallAll)
+            if (score > ScreenManager.HighscoreLaserGraze)
             {
-                ScreenManager.HighscoreWallAll = score;
+                ScreenManager.HighscoreLaserGraze = score;
             }
 
-            strHighScore = ScreenManager.HighscoreWallAll.ToString();
+            strHighScore = ScreenManager.HighscoreLaserGraze.ToString();
         }
 
         void StartGame()
@@ -395,12 +396,5 @@ namespace WallAll
         {
             return (int)(font.MeasureString(text).X);
         }
-    }
-
-    enum GameState
-    { 
-        Title,
-        GameOver,
-        Playing
     }
 }

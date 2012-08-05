@@ -74,7 +74,6 @@ namespace WallAll
 #if WINDOWS_PHONE
             screenManager.SerializeState();
 #endif
-
             base.OnExiting(sender, args);
         }
 

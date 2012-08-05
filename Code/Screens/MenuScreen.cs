@@ -70,6 +70,16 @@ namespace WallAll
 
         #endregion
 
+        public override void LoadContent(GraphicsDevice graphicsDevice)
+        {
+            foreach (var entry in MenuEntries)
+            {
+                entry.Init(ScreenManager.FontNormal);
+            }
+
+            base.LoadContent(graphicsDevice);
+        }
+
         #region Handle Input
 
         /// <summary>

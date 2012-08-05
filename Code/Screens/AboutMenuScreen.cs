@@ -16,9 +16,9 @@ namespace WallAll
     class AboutMenuScreen : MenuScreen
     {
         const string companyName = "8BigDogs";
-        const string Coding1 = "Sharad Cornejo Altuzar";
+        const string Coding1 = "Sharad Cornejo";
         const string Coding2 = "Fernando Altuzar";
-        const string Art1 = "Stephany Valdés";
+        const string Art1 = "Stephany Valdes";
         //const string Music = "Music: http://incompetech.com/";
         const string ConceptBy = "Concept by: ";
         const string ABA = "http://wonderfl.net/user/ABA";
@@ -26,7 +26,7 @@ namespace WallAll
         MenuEntry companyMenuEntry;
         MenuEntry codingMenuEntry;
         MenuEntry coding2MenuEntry;
-        //MenuEntry artMenuEntry;
+        MenuEntry artMenuEntry;
         //MenuEntry musicMenuEntry;
         MenuEntry conceptMenuEntry1;
         MenuEntry conceptMenuEntry2;
@@ -42,7 +42,7 @@ namespace WallAll
 
             codingMenuEntry = new MenuEntry(Coding1) { Font = ScreenManager.FontSmall };
             coding2MenuEntry = new MenuEntry(Coding2) { Font = ScreenManager.FontSmall };
-            //  artMenuEntry = new MenuEntry(Art1) { Font = ScreenManager.FontSmall };
+            artMenuEntry = new MenuEntry(Art1) { Font = ScreenManager.FontSmall };
             //musicMenuEntry = new MenuEntry(Music) { Font = ScreenManager.FontSmall };
             conceptMenuEntry1 = new MenuEntry(ConceptBy) { Font = ScreenManager.FontSmall };
             conceptMenuEntry2 = new MenuEntry(ABA) { Font = ScreenManager.FontSmall };
@@ -54,7 +54,7 @@ namespace WallAll
             MenuEntries.Add(companyMenuEntry);
             MenuEntries.Add(codingMenuEntry);
             MenuEntries.Add(coding2MenuEntry);
-            //MenuEntries.Add(propsMenuEntry);
+            MenuEntries.Add(artMenuEntry);
             //MenuEntries.Add(musicMenuEntry);
             MenuEntries.Add(conceptMenuEntry1);
             MenuEntries.Add(conceptMenuEntry2);

@@ -99,18 +99,18 @@ namespace WallAll
         {
             this.text = text;
             this.SeparationScale = scale;
-
-            Font = ScreenManager.FontNormal;
         }
 
         public MenuEntry(string text)
         {
             this.text = text;
             this.SeparationScale = 1f;
-
-            Font = ScreenManager.FontNormal;
         }
 
+        public void Init(SpriteFont font)
+        {
+            Font = font;
+        }
         #region Update and Draw
 
         /// <summary>
@@ -169,7 +169,6 @@ namespace WallAll
             // Draw text, centered on the middle of each line.
             ScreenManager screenManager = screen.ScreenManager;
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
-            //SpriteFont font = UseSmallFont ? screenManager.FontSmall : screenManager.FontNormal;
 
             Vector2 origin = new Vector2(0, Font.LineSpacing / 2);
 
@@ -194,8 +193,7 @@ namespace WallAll
             {
                 System.Diagnostics.Debug.Assert(ScreenManager.FontNormal != null, "Font Normal is null!");
                 return (int)(ScreenManager.FontNormal.MeasureString(Text).Y * SeparationScale);
-            }
-            
+            }            
         }
 
         /// <summary>

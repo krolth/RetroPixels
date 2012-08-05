@@ -34,6 +34,9 @@ namespace WallAll
         List<GameScreen> screens = new List<GameScreen>();
         List<GameScreen> screensToUpdate = new List<GameScreen>();
 
+        public int HighscoreWallAll = 0;
+        public int HighscoreLaserGraze = 0;
+
         InputState input = new InputState();
 
         SpriteBatch spriteBatch;
@@ -340,6 +343,16 @@ namespace WallAll
                 }
 
                 // create a file we'll use to store the list of screens in the stack
+                using (IsolatedStorageFileStream stream = storage.CreateFile("ScreenManager\\Highscores.dat"))
+                {
+                    using (BinaryWriter writer = new BinaryWriter(stream))
+                    {
+                        writer.Write(HighscoreWallAll);
+                        writer.Write(HighscoreLaserGraze);                        
+                    }
+                }
+
+                // create a file we'll use to store the list of screens in the stack
                 using (IsolatedStorageFileStream stream = storage.CreateFile("ScreenManager\\ScreenList.dat"))
                 {
                     using (BinaryWriter writer = new BinaryWriter(stream))
@@ -408,6 +421,25 @@ namespace WallAll
                                             GameScreen screen = Activator.CreateInstance(screenType) as GameScreen;
                                             AddScreen(screen, PlayerIndex.One);
                                         }
+                                    }
+                                }
+                            }
+                        }
+
+                        // see if we have a highscore file
+                        if (storage.FileExists("ScreenManager\\Highscores.dat"))
+                        {
+                            // load the highscores
+                            using (IsolatedStorageFileStream stream = storage.OpenFile("ScreenManager\\Highscores.dat", FileMode.Open, FileAccess.Read))
+                            {
+                                using (BinaryReader reader = new BinaryReader(stream))
+                                {
+                                    while (reader.BaseStream.Position < reader.BaseStream.Length)
+                                    {
+                                        // read a line from our file
+                                        HighscoreWallAll = reader.ReadInt32();
+                                        HighscoreLaserGraze = reader.ReadInt32();
+                                        break;
                                     }
                                 }
                             }
